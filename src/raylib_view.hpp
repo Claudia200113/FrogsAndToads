@@ -1,6 +1,8 @@
 #pragma once
 #include "interfaces.hpp"
 #include "raylib.h"
+#include <string>
+
 
 namespace FrogToad {
     /**
@@ -12,6 +14,8 @@ namespace FrogToad {
     public:
         /** @brief Render the current model using already loaded resources. */
         void draw(const BoardModel& model) override;
+        void drawCells();
+        void setText(const float& posX, const float& posY, std::string& tex);
 
         /** @brief Window width in pixels, available before view construction. */
         static int windowW();

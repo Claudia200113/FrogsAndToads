@@ -64,11 +64,22 @@ namespace FrogToad {
 		std::cout << "\n\n";
 
 		// Status line
+		/*
 		if (model.isSolved()) {
 			std::cout << blue() << "Solved! R to restart.\n";
 		}
 		else {
 			std::cout << white() << "Choose a piece to move.\n\n";
+		}*/
+
+		if (model.state() == BoardModel::GameState::Playing) {
+			std::cout << white() << "Choose a piece to move.\n\n";
+		}
+		else if (model.state() == BoardModel::GameState::Solved) {
+			std::cout << blue() << "Solved! R to restart.\n";
+		}
+		else if (model.state() == BoardModel::GameState::Lost) {
+			std::cout << red() << "Lost! R to restart.\n";
 		}
 
 		// Erase text left by a previous, longer frame.
