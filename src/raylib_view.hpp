@@ -15,7 +15,10 @@ namespace FrogToad {
         /** @brief Render the current model using already loaded resources. */
         void draw(const BoardModel& model) override;
         void drawCells();
-        void setText(const float& posX, const float& posY, std::string& tex);
+        void drawText(const float& posX, const float& posY, const std::string text, const float& fontSize,const Color color);
+        void drawPieces(const BoardModel& model);
+        void drawFrog(int x, int size);
+        void drawToad(int x, int size);
 
         /** @brief Window width in pixels, available before view construction. */
         static int windowW();
