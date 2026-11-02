@@ -14,7 +14,7 @@ namespace FrogToad {
 			}
 
 			//Prevents not valid input.
-			if(key < KEY_ONE || key > KEY_NINE || key > KEY_ZERO + BoardModel::BoardSize) {
+			if(key < KEY_ONE || key > KEY_NINE || key > KEY_ZERO + model.BoardSize) {
 				//Adds KEY_ZERO due to the code is key contains.
 				return;
 			}
