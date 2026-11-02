@@ -8,11 +8,11 @@ namespace FrogToad {
 	
 	//Draws only the outline from the cells 
 	void RaylibView::drawCells() {
-
+		float cellStartX = cellStartPos;
 		for (int index{ 0 }; index < BoardModel::BoardSize; ++index) {
-			DrawRectangleLinesEx({ cellStartPos, 105, mod, 80 }, 4, WHITE);
-			drawText(cellStartPos + mod/2, 200, TextFormat("%d", index+1), 20, BLACK);
-			cellStartPos += mod;
+			DrawRectangleLinesEx({ cellStartX, 105, mod, 80 }, 4, WHITE);
+			drawText(cellStartX + mod/2, 200, TextFormat("%d", index+1), 20, BLACK);
+			cellStartX += mod;
 		}
 	}
 
@@ -97,14 +97,14 @@ namespace FrogToad {
 	int checkMouseInput(Vector2 mouse) {
 		int offset = cellStartPos;
 		for (int i{ 0 }; i < BoardModel::BoardSize; ++i) {
-			if (mouse.x >= offset && mouse.x > offset + mod && mouse.y > 105 || mouse.y < 185) {
+			if (mouse.x >= offset +2 && mouse.x > offset + mod -2 && mouse.y > 105 || mouse.y < 185) {
 				return i;
 			}
 			else {
 				offset += mod;
 			}
 		}
-		return 0;
+		return -1;
 	}
 }
 
