@@ -1,19 +1,27 @@
 #include "raylib_view.hpp"
+#include "board_layout.hpp"
 #include <string>
 
 namespace FrogToad {
 
-	const float mod{500 / BoardModel::BoardSize };
-	float cellStartPos{ 50 };
 	
 	//Draws only the outline from the cells 
 	void RaylibView::drawCells() {
-		float cellStartX = cellStartPos;
-		for (int index{ 0 }; index < BoardModel::BoardSize; ++index) {
-			DrawRectangleLinesEx({ cellStartX, 105, mod, 80 }, 4, WHITE);
-			drawText(cellStartX + mod/2, 200, TextFormat("%d", index+1), 20, BLACK);
-			cellStartX += mod;
+		int leftBuffer = BoardLayout::Left;
+		int topBuffer = BoardLayout::Top;
+		int boxSize = BoardLayout::CellSize;
+		Vector2 mp = GetMousePosition();
+
+		std::optional<int> index = BoardLayout::cellAt(mp);
+		if (index != std::nullopt) {
+			DrawRectangle(index.value() * boxSize + leftBuffer, topBuffer, boxSize, boxSize, YELLOW);
 		}
+
+		for (int index{ 0 }; index < BoardModel::BoardSize; index++) {
+			DrawRectangleLines(index * boxSize + leftBuffer, topBuffer, boxSize, boxSize, BLACK);
+			drawText(index * boxSize + (boxSize/2) + leftBuffer, 200, TextFormat("%d", index + 1), 20, BLACK);
+		}
+
 	}
 
 	void RaylibView::drawText(const float& posX, const float& posY, const std::string text, const float& fontSize, const Color color) {
@@ -24,6 +32,7 @@ namespace FrogToad {
 
 	//Draws frogs and toads characters
 	void RaylibView::drawPieces(const BoardModel& model) {
+		const float mod{ 500 / BoardModel::BoardSize };
 
 		float posX{ (50 + mod/2) -5 };
 
@@ -92,38 +101,4 @@ namespace FrogToad {
 
 	int RaylibView::windowW() { return 600; }
 	int RaylibView::windowH() { return 300; }
-
-
-	int checkMouseInput(Vector2 mouse) {
-		int offset = cellStartPos;
-		for (int i{ 0 }; i < BoardModel::BoardSize; ++i) {
-			if (mouse.x >= offset +2 && mouse.x > offset + mod -2 && mouse.y > 105 || mouse.y < 185) {
-				return i;
-			}
-			else {
-				offset += mod;
-			}
-		}
-		return -1;
-	}
 }
-
-
-
-/*
-
-		std::cout << resetStyles() << background() << clearScreen() << cursorHome() << hideCursor();
-	}
-
-	AnsiView::~AnsiView() {
-		std::cout << resetStyles() << showCursor() << std::flush;
-	}
-
-	void AnsiView::draw(const BoardModel& model) {
-		std::cout << cursorHome() << resetStyles() << background();
-
-// Erase text left by a previous, longer frame.
-std::cout << eraseAfter() << resetStyles() << std::flush;
-
-
-*/
