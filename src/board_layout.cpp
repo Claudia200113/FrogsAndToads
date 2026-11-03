@@ -1,7 +1,6 @@
 #include "board_model.hpp"
 #include "board_layout.hpp"
 #include <cassert> // assert() in cellRect()
-#include <iostream>
 
 namespace FrogToad {
     Rectangle BoardLayout::board() {

@@ -94,7 +94,7 @@ namespace FrogToad {
 
 		}
 		else if (model.state() == BoardModel::GameState::Lost) {
-			drawText(40, 240, "Lost! R to restart.", 30, RED);
+			drawText(40, 240, "You lose! R to restart.", 30, RED);
 
 		}
 	}
