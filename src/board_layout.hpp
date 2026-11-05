@@ -9,7 +9,7 @@ namespace FrogToad {
       * Some methods will need to query the model. See cellRect for a use of BoardModel::BoardSize
       */
     struct BoardLayout {
-        static constexpr float CellSize = 520 / BoardModel::BoardSize; // Width and height of each cell in pixels.
+        static constexpr float CellSize = 520 / BoardModel::BoardSize; // Allows size to adapt to the number of cells declared on the model.
         static constexpr float Left = 40.0f;     // Window x coord of the board's left edge.
         static constexpr float Top = 105.0f;      // Window y coord of the board's top edge.
 

@@ -13,12 +13,14 @@ namespace FrogToad {
 		Vector2 mp = GetMousePosition();
 
 		std::optional<int> index = BoardLayout::cellAt(mp);
+
 		if (index != std::nullopt) {
-			DrawRectangle(index.value() * boxSize + leftBuffer, topBuffer, boxSize, boxSize, YELLOW);
+			Rectangle r = BoardLayout::cellRect(index.value());
+			DrawRectangleRec(r, YELLOW);
 		}
 
 		for (int index{ 0 }; index < BoardModel::BoardSize; index++) {
-			DrawRectangleLines(index * boxSize + leftBuffer, topBuffer, boxSize, boxSize, BLACK);
+			DrawRectangleLines(index * boxSize + leftBuffer, topBuffer, boxSize, boxSize, WHITE);
 			drawText(index * boxSize + (boxSize/2) + leftBuffer, 200, TextFormat("%d", index + 1), 20, BLACK);
 		}
 
