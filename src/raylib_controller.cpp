@@ -15,14 +15,11 @@ namespace FrogToad {
 			model.reset();
 			return;
 		}
-
-
 		
 		// Numbered keys select zero-based cells by subtracting '1'.
 		// In this way, '1' maps to 0, '2' to 1, '3' to 2, etc.
 		index = key - KEY_ZERO;
 		model.tryMove(index - 1);
-
 
 		//Mouse inputs
 		if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {

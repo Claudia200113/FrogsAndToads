@@ -23,10 +23,6 @@ namespace FrogToad {
         
         //Returns gamestate lost if board is not solved and there are no more valid movements.
         return GameState::Lost;
-
-        // TODO (student): Use canMove() to detect when no legal moves remain.
-        // Check for a solution first: the solved board also has no legal moves.
-        //return GameState::Playing;
     }
 
     bool BoardModel::canMove(int index) const {

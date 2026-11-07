@@ -11,7 +11,6 @@ namespace FrogToad {
     Rectangle BoardLayout::cellRect(int index) {
         // Assert that the index is valid:
         assert(index >= 0 && index < BoardModel::BoardSize);
-
         return { Left + index * CellSize, Top, CellSize, CellSize }; // Calculated rectangle for cell at zero-based position index.
     }
 
