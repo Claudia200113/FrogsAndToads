@@ -9,6 +9,7 @@ namespace FrogToad {
         return board == GoalBoard;
     }
 
+    //Returns the state of the game
     BoardModel::GameState BoardModel::state() const {
         //If gameboard is the same as the goal board, returns gamestate solved.
         if (isSolved()) return GameState::Solved;
